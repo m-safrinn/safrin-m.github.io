@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohamad Safrin | Data Science & Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0b1929;
+    --navy-mid: #122236;
+    --navy-light: #1a3350;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --text-muted: #8a9bb0;
+    --border: rgba(201,168,76,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 5%;
+    background: rgba(11,25,41,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 5% 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(26,51,80,0.8) 0%, transparent 70%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--gold) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; max-width: 700px; }
+  .hero-tag {
+    display: inline-block;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 0.4rem 1rem; margin-bottom: 1.8rem;
+    border-radius: 2px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900; line-height: 1.05;
+    color: var(--white);
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-name span { color: var(--gold); }
+  .hero-sub {
+    font-size: 1.1rem; font-weight: 300;
+    color: var(--text-muted); margin: 1.2rem 0 2.4rem;
+    line-height: 1.7;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn {
+    padding: 0.85rem 2rem;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+    text-decoration: none; border-radius: 3px;
+    transition: all 0.3s;
+    cursor: pointer; border: none; display: inline-block;
+  }
+  .btn-gold {
+    background: var(--gold); color: var(--navy);
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    border: 1px solid rgba(245,240,232,0.3);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem; font-weight: 700; color: var(--gold);
+  }
+  .stat-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5%; }
+  .section-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 700;
+    color: var(--white); margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+  .divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--navy-mid); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p {
+    color: var(--text-muted); line-height: 1.9; font-size: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .about-text p strong { color: var(--cream); }
+  .info-list { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.9rem; }
+  .info-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .info-icon { color: var(--gold); font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+  .info-item span { color: var(--text-muted); font-size: 0.92rem; line-height: 1.5; }
+  .edu-timeline { display: flex; flex-direction: column; gap: 1.6rem; }
+  .edu-card {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    padding: 1.4rem 1.6rem;
+    border-radius: 4px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .edu-card:hover { transform: translateX(6px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+  .edu-degree { font-weight: 600; color: var(--white); font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .edu-school { color: var(--gold); font-size: 0.82rem; margin-bottom: 0.2rem; }
+  .edu-date { color: var(--text-muted); font-size: 0.78rem; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--navy); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+  .skill-group {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    border-radius: 6px;
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .skill-group:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+  .skill-group-title {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .tag {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    color: var(--cream);
+    font-size: 0.8rem; font-weight: 500;
+    padding: 0.35rem 0.8rem;
+    border-radius: 3px;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .tag:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--navy-mid); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+  .project-card {
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex; flex-direction: column;
+  }
+  .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+  .project-header {
+    padding: 2rem 2rem 1rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: flex-start;
+  }
+  .project-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900;
+    color: rgba(201,168,76,0.12);
+    line-height: 1;
+  }
+  .project-icon { font-size: 2rem; }
+  .project-body { padding: 1.6rem 2rem 2rem; flex: 1; display: flex; flex-direction: column; }
+  .project-module {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+  .project-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--white); margin-bottom: 0.8rem;
+  }
+  .project-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; flex: 1; margin-bottom: 1.4rem; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .stack-tag {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--gold-light);
+    font-size: 0.72rem; font-weight: 600;
+    padding: 0.25rem 0.65rem; border-radius: 2px;
+  }
+  .project-footer {
+    padding: 1rem 2rem 1.6rem;
+    border-top: 1px solid var(--border);
+  }
+  .github-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 0.5rem 1.1rem; border-radius: 3px;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+  }
+  .github-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(201,168,76,0.07);
+  }
+  .github-btn svg { width: 15px; height: 15px; fill: currentColor; }
+
+  /* ── CERTIFICATES ── */
+  .cert-card {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 6px; padding: 1.4rem 1.8rem;
+    display: inline-flex; align-items: center; gap: 1rem;
+    margin-top: 1rem;
+  }
+  .cert-icon { font-size: 2rem; }
+  .cert-name { font-weight: 600; color: var(--white); font-size: 0.95rem; }
+  .cert-lang { color: var(--text-muted); font-size: 0.82rem; margin-top: 0.2rem; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .contact-info { display: flex; flex-direction: column; gap: 1.4rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1.2rem;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    padding: 1.2rem 1.6rem; border-radius: 6px;
+    transition: border-color 0.3s;
+  }
+  .contact-item:hover { border-color: var(--gold); }
+  .contact-item-icon { font-size: 1.4rem; color: var(--gold); }
+  .contact-item-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); }
+  .contact-item-value { font-size: 0.95rem; color: var(--cream); font-weight: 500; margin-top: 0.2rem; }
+  .lang-grid { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .lang-badge {
+    background: var(--navy-mid); border: 1px solid var(--border);
+    color: var(--cream); padding: 0.6rem 1.4rem;
+    border-radius: 3px; font-size: 0.88rem; font-weight: 500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 2rem 5%;
+    color: var(--text-muted); font-size: 0.82rem;
+  }
+  footer span { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-stats { gap: 1.5rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MS</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Data Science &amp; Software Engineering</div>
+    <h1 class="hero-name">Mohamad<br><span>Safrin</span></h1>
+    <p class="hero-sub">BSc Data Science graduate with hands-on experience in full-stack web development, machine learning, and data analytics. Building intelligent, impactful solutions.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-gold">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Projects</div>
+      </div>
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Languages</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Degrees</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="section-title">About Me</div>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm <strong>Mohamad Safrin</strong>, a passionate Data Science and Software Engineering graduate based in Sri Lanka. I completed my <strong>BSc in Data Science</strong> at Cardiff Metropolitan University (ICBT Campus, Colombo) and hold an <strong>HND in Computing & Software Engineering</strong> from the same institution.</p>
+      <p>My journey spans full-stack web development, mobile application development, machine learning, and data analytics — giving me a well-rounded perspective on building end-to-end digital solutions.</p>
+      <p>I thrive on solving real-world problems with technology, whether that's detecting crop diseases with deep learning or designing intuitive user-facing applications.</p>
+      <div class="info-list">
+        <div class="info-item"><span class="info-icon">📞</span><span>+94 72 48 92 067</span></div>
+        <div class="info-item"><span class="info-icon">✉️</span><span>mhdsafrin081@gmail.com</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom:1rem;">Education</div>
+      <div class="edu-timeline">
+        <div class="edu-card">
+          <div class="edu-degree">BSc in Data Science</div>
+          <div class="edu-school">Cardiff Metropolitan University — ICBT Campus, Colombo</div>
+          <div class="edu-date">Nov 2024 – March 2026 &nbsp;·&nbsp; Awaiting Results</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">HD in Computing & Software Engineering</div>
+          <div class="edu-school">Cardiff Metropolitan University — ICBT Campus, Colombo</div>
+          <div class="edu-date">Nov 2022 – July 2024</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">GCE Advanced Level — Commerce Stream</div>
+          <div class="edu-school">Al-Azhar Central College</div>
+          <div class="edu-date">April 2019 – Feb 2022</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-degree">GCE Ordinary Level</div>
+          <div class="edu-school">Oxford International College</div>
+          <div class="edu-date">Jan 2007 – Dec 2018</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">What I Know</div>
+  <div class="section-title">Skills & Expertise</div>
+  <div class="divider"></div>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">💻 Programming Languages</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">PHP</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">C#</span>
+        <span class="tag">C++</span>
+        <span class="tag">R</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">🌐 Web Development</div>
+      <div class="skill-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">Flask</span>
+        <span class="tag">PHP (MVC)</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">💾 Databases</div>
+      <div class="skill-tags">
+        <span class="tag">MySQL</span>
+        <span class="tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">📊 Data & Analytics</div>
+      <div class="skill-tags">
+        <span class="tag">Power BI</span>
+        <span class="tag">Excel</span>
+        <span class="tag">R Studio</span>
+        <span class="tag">PyTorch</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">🎨 Design & Tools</div>
+      <div class="skill-tags">
+        <span class="tag">Figma</span>
+        <span class="tag">Android Studio</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">🤝 Soft Skills</div>
+      <div class="skill-tags">
+        <span class="tag">Communication</span>
+        <span class="tag">Problem-Solving</span>
+        <span class="tag">Time Management</span>
+        <span class="tag">Critical Thinking</span>
+        <span class="tag">Documentation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">What I've Built</div>
+  <div class="section-title">Projects</div>
+  <div class="divider"></div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-num">01</div>
+        <div class="project-icon">🎬</div>
+      </div>
+      <div class="project-body">
+        <div class="project-module">HD · Web Development</div>
+        <div class="project-title">Movie Booking Website</div>
+        <div class="project-desc">A full-featured movie theatre booking system where users can browse films, select seats, and complete reservations. All booking data is persisted in a relational database with a dynamic front-end experience.</div>
+        <div class="project-stack">
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">PHP</span>
+          <span class="stack-tag">SQL</span>
+        </div>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/yourusername/movie-booking-website" target="_blank" class="github-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-num">02</div>
+        <div class="project-icon">🛒</div>
+      </div>
+      <div class="project-body">
+        <div class="project-module">HD · Final Project (Team)</div>
+        <div class="project-title">E-Commerce Platform</div>
+        <div class="project-desc">A fully functional e-commerce website built collaboratively, featuring product listings, a shopping cart, user authentication, and a comprehensive admin dashboard for order and inventory management.</div>
+        <div class="project-stack">
+          <span class="stack-tag">HTML</span>
+          <span class="stack-tag">CSS</span>
+          <span class="stack-tag">JavaScript</span>
+          <span class="stack-tag">PHP</span>
+          <span class="stack-tag">MySQL</span>
+        </div>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/yourusername/ecommerce-website" target="_blank" class="github-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-num">03</div>
+        <div class="project-icon">🌿</div>
+      </div>
+      <div class="project-body">
+        <div class="project-module">BSc Data Science · Final Project</div>
+        <div class="project-title">Cocoa Disease Detection (CNN)</div>
+        <div class="project-desc">A deep learning web application that uses a Convolutional Neural Network (CNN) to identify diseases in cocoa plants from images. The model was trained from scratch and deployed as an interactive web app.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">PyTorch</span>
+          <span class="stack-tag">Flask</span>
+          <span class="stack-tag">MySQL</span>
+          <span class="stack-tag">CNN / ML</span>
+        </div>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/yourusername/cocoa-disease-detection" target="_blank" class="github-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-num">04</div>
+        <div class="project-icon">🎂</div>
+      </div>
+      <div class="project-body">
+        <div class="project-module">HD · Mobile Development</div>
+        <div class="project-title">Cake Shop Ordering App</div>
+        <div class="project-desc">A mobile application for a cake shop that allows customers to browse the menu, customise orders, and place orders online. Built as a native Android application providing a smooth, user-friendly experience.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Android Studio</span>
+          <span class="stack-tag">Java</span>
+        </div>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/yourusername/cake-shop-app" target="_blank" class="github-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-num">05</div>
+        <div class="project-icon">📊</div>
+      </div>
+      <div class="project-body">
+        <div class="project-module">BSc Data Science · Analytics</div>
+        <div class="project-title">Power BI Dashboards</div>
+        <div class="project-desc">Two interactive Power BI dashboards — one analysing supermarket sales trends and performance metrics, and another exploring Spotify user listening behaviour patterns and preferences. Both delivered actionable data-driven insights.</div>
+        <div class="project-stack">
+          <span class="stack-tag">Power BI</span>
+          <span class="stack-tag">Data Analysis</span>
+          <span class="stack-tag">Excel</span>
+          <span class="stack-tag">Data Visualization</span>
+        </div>
+      </div>
+      <div class="project-footer">
+        <a href="https://github.com/yourusername/powerbi-dashboards" target="_blank" class="github-btn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's Connect</div>
+  <div class="section-title">Contact Me</div>
+  <div class="divider"></div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">📞</div>
+        <div>
+          <div class="contact-item-label">Phone</div>
+          <div class="contact-item-value">+94 72 48 92 067</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉️</div>
+        <div>
+          <div class="contact-item-label">Email</div>
+          <div class="contact-item-value">mhdsafrin081@gmail.com</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label" style="margin-bottom:1rem;">Certificates</div>
+      <div class="cert-card">
+        <div class="cert-icon">🏆</div>
+        <div>
+          <div class="cert-name">Diploma in Web Designing</div>
+          <div class="cert-lang">Professional Certification</div>
+        </div>
+      </div>
+      <div class="section-label" style="margin-top:2rem; margin-bottom:1rem;">Languages</div>
+      <div class="lang-grid">
+        <div class="lang-badge">🗣️ English</div>
+        <div class="lang-badge">🗣️ Tamil</div>
+        <div class="lang-badge">🗣️ Sinhala</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>Mohamad Safrin</span> · Data Science & Software Engineering</p>
+</footer>
+
+</body>
+</html>
